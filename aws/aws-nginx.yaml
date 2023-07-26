@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginxsify
+spec:
+  selector:
+    matchLabels:
+      run: my-nginxsify
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-nginxsify
+    spec:
+      containers:
+      - name: my-nginxsify
+        image: vengi014/sifyweb
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nginxsify
+  labels:
+    run: my-nginxsify
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: my-nginxsify
+
