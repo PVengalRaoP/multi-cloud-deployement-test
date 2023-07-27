@@ -17,6 +17,7 @@ spec:
         image: vengi014/sifyweb
         ports:
         - containerPort: 80
+        imagePullPolicy: Always
 
 ---
 
